@@ -50,8 +50,6 @@ def extract_features(
     target = tokens[t].replace("_", "")
     # Now onto feature extraction.
     features: Dict[str, str] = {}
-    # TODO: add features to the feature dictionary here using `token`, its
-    # index `t`, and the list of tokens `tokens`.
     features["t-1"] = _token_feature(tokens, t - 1)
     features["t-2"] = _token_feature(tokens, t - 2)
     features["t+1"] = _token_feature(tokens, t + 1)
