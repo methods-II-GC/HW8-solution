@@ -95,11 +95,7 @@ def main() -> None:
         # Training.
         (feature_vectors, y) = extract_features_file(train_path)
         x = vectorizer.fit_transform(feature_vectors)
-        model = sklearn.linear_model.LogisticRegression(
-            penalty="l1",
-            C=100,
-            solver="liblinear",
-        )
+        # Here I'm using some lightly tuned hyperparameters.
         model = sklearn.linear_model.LogisticRegression(
             penalty="l1",
             C=10,
