@@ -93,7 +93,7 @@ def main() -> None:
     for train_path in glob.iglob(TRAIN_TSV):
         vectorizer = sklearn.feature_extraction.DictVectorizer(dtype=bool)
         # Training.
-        (feature_vectors, y) = extract_features_file(train_path)
+        feature_vectors, y = extract_features_file(train_path)
         x = vectorizer.fit_transform(feature_vectors)
         # Here I'm using some lightly tuned hyperparameters.
         model = sklearn.linear_model.LogisticRegression(
@@ -104,7 +104,7 @@ def main() -> None:
         model.fit(x, y)
         test_path = train_path.replace("/train/", "/test/")
         # Evaluation.
-        (feature_vectors, y) = extract_features_file(test_path)
+        feature_vectors, y = extract_features_file(test_path)
         x = vectorizer.transform(feature_vectors)
         yhat = model.predict(x)
         assert len(y) == len(yhat), "Mismatched lengths"
